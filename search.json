@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "nlp.html",
+    "href": "nlp.html",
+    "title": "nlp",
+    "section": "",
+    "text": "source\n\n\n\n TokenAnnotator (*args:Any, **kwargs:Any)\n\nMain AnyWidget base class.\nSmall example including some pre-computed annotation.\n\na = TokenAnnotator(text='John Smith visited Microsoft in Seattle last week.', \n               labels=['person', 'location', 'organization'],\n               annotations=[{'start': 19, 'end': 28, 'class': 'organization'}])\na\n\n\n\n\nWe can access the annotations from Python!\n\na.annotations\n\n[{'start': 19, 'end': 28, 'class': 'organization'}]\n\n\n.. it also works ok for longer documents:\n\nx = '# Punkt 9: Kontrakt med Erhvervshus Nord 2024-2026\\n\\n### EMN-2023-01106\\n## Bilag\\n\\n### Udkast - Operatøraftale om erhvervsudvikling i 2024-2026\\n\\n\\n-----\\n\\n### 9 (Åben) Kontrakt med Erhvervshus Nord 2024-2026\\n\\n**Sags ID: EMN-2023-01106**\\n\\n**Ansvarligt center: Direktionssekretariat**\\n\\n**Beslutningskompetence**\\nØU/BR\\n\\n**Sagsfremstilling**\\nDer er udarbejdet en 3 årig aftale, der løber fra 1. januar 2024 – 31. december 2026.\\n\\nDette sker ved at arbejde målrettet gennem:\\n\\n  - erhvervsservice over for virksomhederne i Frederikshavn Kommune.\\n\\n  - erhvervsudvikling hvor Erhvervshus Nord gennemfører en aktiv\\nerhvervsudviklingsindsats over for de enkelte virksomheder med\\n\\nunderstøtning af kommunens strategier, politikker og konkrete indsatser\\nherunder Recycling City og den grønne omstilling.\\n\\n  - erhvervsstrukturudvikling, hvor Erhvervshus Nord arbejder Strategisk med den\\nlangsigtede erhvervsstrukturudvikling i Frederikshavn Kommune, gennem\\n\\nløbende dialog med kommunen samt konkrete indsatser for at tiltrække\\nvirksomheder og investeringer med stor positiv erhvervsøkonomisk afsmitning i\\nlokalsamfundet.\\n\\n  - inddragelse og samarbejder med øvrige erhvervsfremmeaktører.\\n\\nFor løsning af erhvervsserviceopgaverne betales en ydelse på 4.400.000 kr. inkl. moms,\\nbeløbet pristalsreguleres med virkning fra 2025. Betalingen sker i 2 årlige rater med\\nførste halvdel ved årets begyndelse og anden halvdel pr. 1. juli, svarende til 2.200.000 kr.\\npr. rate. Der reserveres desuden et årligt kommunalt beløb på 500.000 kr. til eventuelle\\nsærlige indsatser. Beløb op til 500.000 kr. udbetales, hvis der i forlængelse af de årlige\\nmøder aftales specielle indsatser med Økonomiudvalget.\\n\\nErhvervshus Nord ønsker, at der i aftalen indgår, at basisaftalen og aftalen om særlige\\nindsatser pristalsreguleres i 2024, 2025 og 2026.\\n\\n**Indstilling**\\nDirektionssekretariatet indstiller, at\\n1. aftale for 2024-2026 mellem kommunen og Frederikshavn Erhvervsråd\\ngodkendes\\n2. basisaftalen pristalsreguleres med virkning fra 2024\\n3. det eventuelle beløb til særlig indsatser ikke pristalsreguleres.\\n\\n**Tidligere beslutninger:**\\n\\n\\n-----\\n\\nUdvalg: Økonomiudvalget 2022-2025\\n\\nDato: 26-04-2023\\n\\nAnbefales med den bemærkning, at der betales en ydelse på 4.400.000 kr. ekskl. moms.\\n\\n**Beslutninger:**\\n\\nØkonomiudvalgets indstilling godkendt.\\n\\nAfbud fra Martin Tøttrup Kelkelund (A). I stedet deltog Marie Gade Madsen (A).\\nAfbud fra Almina Nikontovic (A). I stedet deltog Bent Hieronymus Pedersen (A).\\n\\n**Bilag**\\n\\n1. Udkast - Operatøraftale om erhvervsudvikling i 2024-2026 (DokumentID: 7146136 - EMN-2023-01106)\\n\\n\\n-----\\n\\n'\na2 = TokenAnnotator(text = x, labels=['person', 'organization', 'date'], annotations=[{'start': 2316, 'end': 2340, 'class': 'person'}])\na2\n\n\n\n\n\na2.annotations\n\n[{'start': 2316, 'end': 2340, 'class': 'person'}]\n\n\n\n\n\n\nsource\n\n\n\n\n annotate (text:str, patterns:Dict[str,str])\n\n*Annotate text with multiple patterns. If a pattern contains capture groups, uses the first capture group; otherwise uses the full match.\nExample: annotate(“Hi there, John Doe!”, { “greeting”: r’Hi|Hello’ })*\n\ndoc = annotate(\"Hi there, John Doe!\", {\n    \"person\": r'[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+',\n    \"greeting\": r'Hi|Hello'\n})\ndoc\n\n{'text': 'Hi there, John Doe!',\n 'annotations': [{'class': 'greeting', 'start': 0, 'end': 2},\n  {'class': 'person', 'start': 10, 'end': 18}]}\n\n\nWe can pass this doc to the annotator class to visualize.\nNote: if we provide a list of labels to TokenAnnotator, we can also edit the weak annotations.\n\nTokenAnnotator(**doc)\n\n\n\n\n\n\n\nA collection of common RegEx patterns that often come in handy. Useful for stuff like weak annotations.\nLet’s start with a pattern to match names\nGot Sonnet to give some examples of people names to test :)\n\ntext = \"Here are some people: Jean-Paul O'Connor, María-José García, Søren Kierkegaard, N'Golo Kanté, Smith-Jones, and François van der Meer\"\nTokenAnnotator(**annotate(text, {'person': re_person}))\n\n\n\n\nEmail pattern\n\n# todo: email pattern\n\nURL pattern\n\n# todo",
+    "crumbs": [
+      "nlp"
+    ]
+  },
+  {
+    "objectID": "nlp.html#token-annotation-widget",
+    "href": "nlp.html#token-annotation-widget",
+    "title": "nlp",
+    "section": "",
+    "text": "source\n\n\n\n TokenAnnotator (*args:Any, **kwargs:Any)\n\nMain AnyWidget base class.\nSmall example including some pre-computed annotation.\n\na = TokenAnnotator(text='John Smith visited Microsoft in Seattle last week.', \n               labels=['person', 'location', 'organization'],\n               annotations=[{'start': 19, 'end': 28, 'class': 'organization'}])\na\n\n\n\n\nWe can access the annotations from Python!\n\na.annotations\n\n[{'start': 19, 'end': 28, 'class': 'organization'}]\n\n\n.. it also works ok for longer documents:\n\nx = '# Punkt 9: Kontrakt med Erhvervshus Nord 2024-2026\\n\\n### EMN-2023-01106\\n## Bilag\\n\\n### Udkast - Operatøraftale om erhvervsudvikling i 2024-2026\\n\\n\\n-----\\n\\n### 9 (Åben) Kontrakt med Erhvervshus Nord 2024-2026\\n\\n**Sags ID: EMN-2023-01106**\\n\\n**Ansvarligt center: Direktionssekretariat**\\n\\n**Beslutningskompetence**\\nØU/BR\\n\\n**Sagsfremstilling**\\nDer er udarbejdet en 3 årig aftale, der løber fra 1. januar 2024 – 31. december 2026.\\n\\nDette sker ved at arbejde målrettet gennem:\\n\\n  - erhvervsservice over for virksomhederne i Frederikshavn Kommune.\\n\\n  - erhvervsudvikling hvor Erhvervshus Nord gennemfører en aktiv\\nerhvervsudviklingsindsats over for de enkelte virksomheder med\\n\\nunderstøtning af kommunens strategier, politikker og konkrete indsatser\\nherunder Recycling City og den grønne omstilling.\\n\\n  - erhvervsstrukturudvikling, hvor Erhvervshus Nord arbejder Strategisk med den\\nlangsigtede erhvervsstrukturudvikling i Frederikshavn Kommune, gennem\\n\\nløbende dialog med kommunen samt konkrete indsatser for at tiltrække\\nvirksomheder og investeringer med stor positiv erhvervsøkonomisk afsmitning i\\nlokalsamfundet.\\n\\n  - inddragelse og samarbejder med øvrige erhvervsfremmeaktører.\\n\\nFor løsning af erhvervsserviceopgaverne betales en ydelse på 4.400.000 kr. inkl. moms,\\nbeløbet pristalsreguleres med virkning fra 2025. Betalingen sker i 2 årlige rater med\\nførste halvdel ved årets begyndelse og anden halvdel pr. 1. juli, svarende til 2.200.000 kr.\\npr. rate. Der reserveres desuden et årligt kommunalt beløb på 500.000 kr. til eventuelle\\nsærlige indsatser. Beløb op til 500.000 kr. udbetales, hvis der i forlængelse af de årlige\\nmøder aftales specielle indsatser med Økonomiudvalget.\\n\\nErhvervshus Nord ønsker, at der i aftalen indgår, at basisaftalen og aftalen om særlige\\nindsatser pristalsreguleres i 2024, 2025 og 2026.\\n\\n**Indstilling**\\nDirektionssekretariatet indstiller, at\\n1. aftale for 2024-2026 mellem kommunen og Frederikshavn Erhvervsråd\\ngodkendes\\n2. basisaftalen pristalsreguleres med virkning fra 2024\\n3. det eventuelle beløb til særlig indsatser ikke pristalsreguleres.\\n\\n**Tidligere beslutninger:**\\n\\n\\n-----\\n\\nUdvalg: Økonomiudvalget 2022-2025\\n\\nDato: 26-04-2023\\n\\nAnbefales med den bemærkning, at der betales en ydelse på 4.400.000 kr. ekskl. moms.\\n\\n**Beslutninger:**\\n\\nØkonomiudvalgets indstilling godkendt.\\n\\nAfbud fra Martin Tøttrup Kelkelund (A). I stedet deltog Marie Gade Madsen (A).\\nAfbud fra Almina Nikontovic (A). I stedet deltog Bent Hieronymus Pedersen (A).\\n\\n**Bilag**\\n\\n1. Udkast - Operatøraftale om erhvervsudvikling i 2024-2026 (DokumentID: 7146136 - EMN-2023-01106)\\n\\n\\n-----\\n\\n'\na2 = TokenAnnotator(text = x, labels=['person', 'organization', 'date'], annotations=[{'start': 2316, 'end': 2340, 'class': 'person'}])\na2\n\n\n\n\n\na2.annotations\n\n[{'start': 2316, 'end': 2340, 'class': 'person'}]\n\n\n\n\n\n\nsource\n\n\n\n\n annotate (text:str, patterns:Dict[str,str])\n\n*Annotate text with multiple patterns. If a pattern contains capture groups, uses the first capture group; otherwise uses the full match.\nExample: annotate(“Hi there, John Doe!”, { “greeting”: r’Hi|Hello’ })*\n\ndoc = annotate(\"Hi there, John Doe!\", {\n    \"person\": r'[A-Z][a-z]+(?:\\s+[A-Z][a-z]+)+',\n    \"greeting\": r'Hi|Hello'\n})\ndoc\n\n{'text': 'Hi there, John Doe!',\n 'annotations': [{'class': 'greeting', 'start': 0, 'end': 2},\n  {'class': 'person', 'start': 10, 'end': 18}]}\n\n\nWe can pass this doc to the annotator class to visualize.\nNote: if we provide a list of labels to TokenAnnotator, we can also edit the weak annotations.\n\nTokenAnnotator(**doc)\n\n\n\n\n\n\n\nA collection of common RegEx patterns that often come in handy. Useful for stuff like weak annotations.\nLet’s start with a pattern to match names\nGot Sonnet to give some examples of people names to test :)\n\ntext = \"Here are some people: Jean-Paul O'Connor, María-José García, Søren Kierkegaard, N'Golo Kanté, Smith-Jones, and François van der Meer\"\nTokenAnnotator(**annotate(text, {'person': re_person}))\n\n\n\n\nEmail pattern\n\n# todo: email pattern\n\nURL pattern\n\n# todo",
+    "crumbs": [
+      "nlp"
+    ]
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "core",
+    "section": "",
+    "text": "source\n\nfoo\n\n foo ()\n\n\nfrom flcore.nlp import *\n\n\na = TokenAnnotator(text='John Smith visited Microsoft in Seattle last week.', \n               labels=['person', 'location', 'organization'],\n               annotations=[{'start': 19, 'end': 28, 'class': 'organization'}])\na\n\n\n\n\n\nTokenAnnotator(**annotate(text=\"Hello there\", patterns={\"greeting\": r'Hi|Hello'}))\n\n\n\n\n\na.annotations\n\n[{'start': 19, 'end': 28, 'class': 'organization'}]",
+    "crumbs": [
+      "core"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "flcore",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation.",
+    "crumbs": [
+      "flcore"
+    ]
+  },
+  {
+    "objectID": "index.html#developer-guide",
+    "href": "index.html#developer-guide",
+    "title": "flcore",
+    "section": "Developer Guide",
+    "text": "Developer Guide\nIf you are new to using nbdev here are some useful pointers to get you started.\n\nInstall flcore in Development mode\n# make sure flcore package is installed in development mode\n$ pip install -e .\n\n# make changes under nbs/ directory\n# ...\n\n# compile to have changes apply to flcore\n$ nbdev_prepare",
+    "crumbs": [
+      "flcore"
+    ]
+  },
+  {
+    "objectID": "index.html#usage",
+    "href": "index.html#usage",
+    "title": "flcore",
+    "section": "Usage",
+    "text": "Usage\n\nInstallation\nInstall latest from the GitHub repository:\n$ pip install git+https://github.com/FrLars21/flcore.git\nor from conda\n$ conda install -c FrLars21 flcore\nor from pypi\n$ pip install flcore\n\n\nDocumentation\nDocumentation can be found hosted on this GitHub repository’s pages. Additionally you can find package manager specific guidelines on conda and pypi respectively.",
+    "crumbs": [
+      "flcore"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "flcore",
+    "section": "How to use",
+    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1\n\n2",
+    "crumbs": [
+      "flcore"
+    ]
+  }
+]

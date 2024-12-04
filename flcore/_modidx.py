@@ -5,4 +5,6 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://FrLars21.github.io',
                 'git_url': 'https://github.com/FrLars21/flcore',
                 'lib_path': 'flcore'},
-  'syms': {'flcore.core': {'flcore.core.foo': ('core.html#foo', 'flcore/core.py')}}}
+  'syms': { 'flcore.core': {'flcore.core.foo': ('core.html#foo', 'flcore/core.py')},
+            'flcore.nlp': { 'flcore.nlp.TokenAnnotator': ('nlp.html#tokenannotator', 'flcore/nlp.py'),
+                            'flcore.nlp.annotate': ('nlp.html#annotate', 'flcore/nlp.py')}}}
